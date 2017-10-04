@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js – The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>GIT</h1>
+					<h3>Le workflow de git chez Parkour3</h3>
+					<img data-src="img/git_logo.png" alt="Down arrow">
+					<p>
+						<small>Créé par Joris HART</small>
+					</p>
+				</section>
+
+				<section id="fragments">
+					<h2>Notre workflow actuel</h2>
+					<p class="fragment">Une branch pour le master</p>
+					<p class="fragment">Une branch pour le staging</p>
+
+					<h3 class="fragment" style="color:red;">La problèmatique ?</h3>
+					<p class="fragment">Plusieurs personnes travaillant sur la même branche</p>
+					<p class="fragment">Non utilisation du potentiel de GIT</p>
+					<p class="fragment">Autre structure d'un projet à un autre</p>
+					<p class="fragment">Des problèmes lors des mises en ligne / mise à jour</p>
+				</section>
+
+				<section id="moment">
+					<h2>Pour l'instant . . .</h2>
+					<img data-src="img/push_run.jpg" alt="Git push and run">
+				</section>
+
+				<section id="utils">
+					<h2>Les outils</h2>
+					<div class="fragment" style="width: 50%; float: left;">
+						<h4>Command line interface</h4>
+						<img data-src="img/bash.png" alt="Git bash">
+					</div>
+					<div class="fragment" style="width: 50%; float: right;">
+						<h4>SourceTree</h4>
+						<img data-src="img/bitbucket-sourcetree.png" alt="sourcetree">
+					</div>
+				</section>
+
+				<section id="workflow">
+					<h2>Le workflow ideal</h2>
+					<p class="fragment fade-up">Une structure similaire entre chaque projet</p>
+					<p class="fragment fade-up">Travailler en équipe sur le même projet</p>
+					<p class="fragment fade-up">Séparation du live et staging</p>
+					<p class="fragment fade-up">Des mises en ligne sans risque</p>
+					<p class="fragment fade-up">Utilisation de GIT comme outil de debug.</p>
+				</section>
+
+				<section>
+					<img data-src="img/workflow.png" alt="workflow" style="width: 500px;">
+				</section>
+
+				<section id="init">
+					<h2>Initialisation</h2>
+					<img data-src="img/init.png" alt="init" style="width: 400px;">
+
+					<div data-markdown>
+						<script type="text/template">
+							```
+							git clone git@bitbucket.org:parkour3_team/< NAME >.git
+							cd test-repo
+							echo "# My project's README" >> README.md
+							git add README.md
+							git commit -m "Initial commit"
+							git push -u origin master
+							```
+						</script>
+					</div>
+				</section>
+
+				<section id="readme">
+					<h2>README.md</h2>
+					<p>Partage de connaissace</p>
+					<p>Définition de l'environnement</p>
+					<p style="color:red;">Les identifitiants administrateur se trouvent dans le fichier de maintenance</p>
+					<a href="https://dillinger.io/" target="_blank" style="font-size: 24px;">Éditeur en ligne</a>
+				</section>
+
+				<section id="main-branches">
+					<h2>Les branches principales</h2>
+					<div class="fragment" style="width: 50%; float: left;">
+						<h4>Master</h4>
+						<p>Head = Le site LIVE</p>
+						<p>Pas de commit direct</p>
+						
+					</div>
+					<div class="fragment" style="width: 50%; float: right;">
+						<h4>Develop</h4>
+						<p>Les dernières développements</p>
+						<p>La branche du staging</p>
+					</div>
+					<div style="clear: both;"></div>
+					<img data-src="img/main-branches.png" style="width: 200px;" class="fragment">
+				</section>
+
+				<section id="support-branches-features">
+					<h2>Les branches <span class="fragment highlight-pink">features</span></h2>
+					<div class="fragment" style="width: 60%; float: left;">
+						<h4 style="text-align: left;">Règles</h4>
+						<ul style="font-size: 36px;margin-bottom: 15px;">
+							<li>Provenance: <span class="fragment highlight-yellow">develop</span></li>
+							<li>Destination de merge: <span class="fragment highlight-yellow">develop</span></li>
+							<li>Nom : feature/< NOM DU FEATURE ></li>
+						</ul>
+						<br>
+						<h4 style="text-align: left;">Création</h4>
+						<div data-markdown>
+							<script type="text/template">
+								```
+								$ git checkout -b feature/toto develop
+								```
+							</script>
+						</div>
+					</div>
+					<div class="fragment" style="width: 40%; float: right;">
+						<img data-src="img/feature.png" style="width: 200px;" class="fragment">
+					</div>
+					<div style="clear: both;"></div>
+				</section>
+
+				<section id="support-branches-features-merging">
+					<section>
+						<img data-src="img/merge.jpg">
+					</section>
+					<section>
+						<h2>Faire des Merges</h2>
+						
+							<div data-markdown>
+								<script type="text/template">
+									```
+									$ git checkout develop
+									Switched to branch 'develop'
+									$ git merge --no-ff feature/toto
+									Updating ea1b82a..05e9557
+									(Summary of changes)
+									$ git push origin develop
+									```
+								</script>
+							</div>
+							<img data-src="img/merge-without-ff.png" class="fragment" style="width: 350px;">
+					</section>
+				</section>
+
+				<section id="support-branches-release">
+					<h2>Les branches <span class="fragment highlight-green">release</span></h2>
+					
+					<div class="fragment" style="width: 60%; float: left;">
+						<h4 style="text-align: left;">Règles</h4>
+						<ul style="font-size: 36px;margin-bottom: 15px;">
+							<li>Provenance: <span class="fragment highlight-yellow">develop</span></li>
+							<li>Destination de merge: <span class="fragment highlight-yellow">develop</span> et <span class="fragment highlight-blue">master</span></li>
+							<li>Nom : release/< NOM DU PROJET HARVEST></li>
+						</ul>
+						<br>
+						<h4 style="text-align: left;">Création</h4>
+						<div data-markdown>
+							<script type="text/template">
+								```
+								$ git checkout -b release/toto1701 develop
+								```
+							</script>
+						</div>
+					</div>
+					<div class="fragment" style="width: 40%; float: right;">
+						<img data-src="img/release.png" class="fragment">
+					</div>
+					<div style="clear: both;"></div>
+				</section>
+
+				<section id="support-branches-release-merging">
+					<section>
+						<h2>Faire des Merges</h2>
+						<img data-src="img/merge.gif">
+					</section>
+					<section>
+						<h2>Faire des Merges</h2>
+						<h5>Vers Master</h5>
+							<div data-markdown >
+								<script type="text/template">
+									```
+									$ git checkout master
+									Switched to branch 'master'
+									$ git merge --no-ff release/toto1701
+									```
+								</script>
+							</div>
+					
+
+							<h5>Vers Develop</h5>
+							<div data-markdown>
+								
+								<script type="text/template">
+									```
+									$ git checkout develop
+									Switched to branch 'develop'
+									$ git merge --no-ff release/toto1701
+									```
+								</script>
+							</div>
+					</section>
+				</section>
+
+				<section id="support-branches-hotfix">
+					<h2>Les branches <span class="fragment highlight-red">hotfix</span></h2>
+					<div class="fragment" style="width: 60%; float: left;">
+						<h4 style="text-align: left;">Règles</h4>
+						<ul style="font-size: 36px;margin-bottom: 15px;">
+							<li>Provenance: <span class="fragment highlight-blue">master</span></li>
+							<li>Destination de merge: <span class="fragment highlight-yellow">develop</span> et <span class="fragment highlight-blue">master</span></li>
+							<li>Nom : hotfix/< TAG ></li>
+						</ul>
+						<br>
+						<h4 style="text-align: left;">Création</h4>
+						<div data-markdown>
+							<script type="text/template">
+								```
+								$ git checkout -b hotfix/traduction master
+								```
+							</script>
+						</div>
+					</div>
+					<div class="fragment" style="width: 40%; float: right;">
+						<img data-src="img/hotfix-branches.png" style="width:250px;" class="fragment">
+					</div>
+					<div style="clear: both;"></div>
+				</section>
+
+				<section>
+					<h2>Best Practices</h2>
+					<img data-src="img/pull.jpg">
+					<p class="fragment highlight-red">Mettre à jour votre projet avant de commencer à travailler</p>
+				</section>
+
+				<section>
+					<h2>Best Practices</h2>
+					
+					<div style="width: 50%; float: left;">
+						<h4 class="fragment highlight-red">don'ts</h4>
+
+						<div data-markdown>
+							<script type="text/template">
+								```
+								$ git add -A
+								```
+							</script>
+						</div>
+
+						<div data-markdown>
+							<script type="text/template">
+								```
+								$ git add -am "fix"
+								```
+							</script>
+						</div>
+					</div>
+					<div style="width: 50%; float: right;">
+						<h4 class="fragment highlight-green">do's</h4>
+
+						<div data-markdown>
+							<script type="text/template">
+								```
+								$ git add /path/to/dir
+								```
+							</script>
+						</div>
+
+						<div data-markdown>
+							<script type="text/template">
+								```
+								$ git add /path/to/dir
+								$ git commit -m "Fix of translation in contest"
+								```
+							</script>
+						</div>
+					</div>
+					<div style="clear: both;"></div>
+
+
+						
+
+				</section>
+
+				<section>
+					<h2>Last but not least</h2>
+					<img data-src="img/fire.jpg" class="fragment" style="width: 600px;">
+				</section>
+
+				<section>
+					<h2>Source</h2>
+					<a href="http://nvie.com/posts/a-successful-git-branching-model/" target="_blank">A successful Git branching model - Vincent Driessen</a>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
